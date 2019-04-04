@@ -2,6 +2,11 @@
 const api = require('./utils/api.js');
 
 App({
+  globalData: {
+    userInfo: null,
+    shop: {},
+    user: {}
+  },
   onLaunch: function() {
 
     wx.BaaS = requirePlugin('sdkPlugin')
@@ -13,9 +18,9 @@ App({
     wx.BaaS.init('67cf78f9f7d9093dea8e')
 
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
 
     // 登录
     wx.login({
@@ -42,9 +47,41 @@ App({
           })
         }
       }
-    })
+    });
+
+    // 获取店铺信息
+    const shop = wx.getStorageSync('shop');
+    if (shop) {
+      this.globalData.shop = shop;
+    } else {
+      this.getShopInfo('5ca446b08c374f56a8a80465');
+    }
+
+    // 获取信息
+    const user = wx.getStorageSync('user');
+    if (user) {
+      this.globalData.user = user;
+    }
   },
-  globalData: {
-    userInfo: null
-  }
+  // 获取店铺信息
+  getShopInfo (userId) {
+    let shopObject = api.initTable('shop');
+    let queryObject = api.initQuery();
+    queryObject.compare('shop_owner', '=', userId);
+    api.querySome(shopObject, queryObject).then(data => {
+      if (data.objects.length > 0) {
+        this.globalData.shop = data.objects[0];
+        wx.setStorageSync('shop', this.globalData.shop);
+      }
+    });
+  },
+  // 获取用户信息
+  getUserInfo(userPhone) {
+    let userObject = api.initTable('user');
+    let queryObject = api.initQuery();
+    queryObject.compare('user_phone', '=', userPhone);
+    api.querySome(userObject, queryObject).then(data => {
+      console.log(data);
+    });
+  },
 })

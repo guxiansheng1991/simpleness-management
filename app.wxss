@@ -1,4 +1,10 @@
 /**app.wxss**/
+@import "./dist/index.wxss";
+
+page {
+  height: 100%;
+  background: rgb(242, 243, 245);
+}
 .container {
   height: 100%;
   box-sizing: border-box;

@@ -7,26 +7,12 @@
     </block>
   </view>
 
-  <view class='list module'>
-    <!-- 入库单 -->
-    <view class='list-item put-wrapper'>
-      <text class='list-item-text'>入库单</text>
-      <image class='list-item-icon' src='../../images/right.png'></image>
-    </view>
-    <!-- 销售单 -->
-    <view class='list-item sale-wrapper'>
-      <text class='list-item-text'>销售单</text>
-      <image class='list-item-icon' src='../../images/right.png'></image>
-    </view>
-    <!-- 尺码列表 -->
-    <view class='list-item sale-wrapper'>
-      <text class='list-item-text'>尺码列表</text>
-      <image class='list-item-icon' src='../../images/right.png'></image>
-    </view>
-    <!-- 设置 -->
-    <view class='list-item sale-wrapper'>
-      <text class='list-item-text'>设置</text>
-      <image class='list-item-icon' src='../../images/right.png'></image>
-    </view>
+  <view class="module">
+    <van-cell-group>
+      <van-cell title="入库单" is-link />
+      <van-cell title="销售单" is-link />
+      <van-cell title="尺码列表" is-link url="/pages/dashboard/index" />
+      <van-cell title="设置" is-link url="/pages/dashboard/index" />
+    </van-cell-group>
   </view>
 </view>

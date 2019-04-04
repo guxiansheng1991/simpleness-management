@@ -14,6 +14,26 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// toast
+const showToast = (title) => {
+  wx.showToast({
+    title: title,
+  });
+}
+
+// loading
+const showLoading = (title) => {
+  wx.showLoading({
+    mask: false
+  });
+}
+const hideLoading = (title) => {
+  wx.hideLoading();
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  showToast: showToast,
+  showLoading: showLoading,
+  hideLoading: hideLoading
 }

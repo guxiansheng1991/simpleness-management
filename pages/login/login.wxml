@@ -1,0 +1,14 @@
+<view class='container'>
+  <view class='login-wrapper'>
+    <van-cell-group>
+      <van-field value="{{userPhone}}" type="number" label="手机号" placeholder="请输入手机号" focus="true" bind:change="userPhoneChange" />
+      <van-field value="{{userPassword}}" type="password" label="密码" placeholder="请输入密码" border="{{ false }}" bind:change="userPasswordChange" />
+    </van-cell-group>
+    <view class='btn'>
+      <van-button type="primary" bindtap='submit'>登录</van-button>
+    </view>
+    <view>
+      <van-button type="default" bindtap='cancel'>取消</van-button>
+    </view>
+  </view>
+</view>
