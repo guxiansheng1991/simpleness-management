@@ -1,0 +1,32 @@
+<!--mine.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    </block>
+  </view>
+
+  <view class='list module'>
+    <!-- 入库单 -->
+    <view class='list-item put-wrapper'>
+      <text class='list-item-text'>入库单</text>
+      <image class='list-item-icon' src='../../images/right.png'></image>
+    </view>
+    <!-- 销售单 -->
+    <view class='list-item sale-wrapper'>
+      <text class='list-item-text'>销售单</text>
+      <image class='list-item-icon' src='../../images/right.png'></image>
+    </view>
+    <!-- 尺码列表 -->
+    <view class='list-item sale-wrapper'>
+      <text class='list-item-text'>尺码列表</text>
+      <image class='list-item-icon' src='../../images/right.png'></image>
+    </view>
+    <!-- 设置 -->
+    <view class='list-item sale-wrapper'>
+      <text class='list-item-text'>设置</text>
+      <image class='list-item-icon' src='../../images/right.png'></image>
+    </view>
+  </view>
+</view>

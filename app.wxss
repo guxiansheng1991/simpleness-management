@@ -1,0 +1,9 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.module {
+  margin-top: 20rpx;
+}

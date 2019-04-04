@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 店铺名称 -->
+  <view class='shop-name'>
+    <text>{{shopName}}</text>
+  </view>
+
+  <!-- 店铺开销售单 -->
+  <view class='sale-order module'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class='form-item-title form-item'>选择商品</view>
+      <view class="form-item-body form-item">
+        <picker class='selector' name="productId" value="{{selectedproduct}}" range-key="product_name" range="{{productArray}}" bindchange='bindPickerChange'>
+          <view class='selected-text'>
+            {{productArray[selectedproduct].product_name}}
+          </view>
+        </picker>
+      </view>
+      <view class='form-item-title form-item'>数量</view>
+      <view class="form-item-body form-item">
+        <view class='number-operator'>
+          <view class='operator-tool' bindtap='subtract'> - </view>
+          <view class='operator-text'>
+            <input name="productNumber" type='number' value="{{recordNumber}}" disabled="false"></input>
+          </view>
+          <view class='operator-tool' bindtap='plus'> + </view>
+        </view>
+      </view>
+      <view class="btn-area">
+        <button form-type="submit">提交</button>
+        <button form-type="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>
