@@ -18,9 +18,9 @@
   </van-cell-group>
 
   <view class='btn'>
-    <van-button type="primary" bindtap='submit' bindtap="handleAdd">确定</van-button>
+    <van-button type="primary" bindtap="handleAdd">确定</van-button>
   </view>
   <view>
-    <van-button type="default" bindtap='cancel' bindtap="handleReset">重置</van-button>
+    <van-button type="default" bindtap="handleReset">重置</van-button>
   </view>
 </view>

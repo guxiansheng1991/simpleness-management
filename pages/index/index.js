@@ -20,6 +20,7 @@ Page({
     // 获取所有商品
     this.getAllProduct();
   },
+  // 提交
   formSubmit(e) {
     let _this = this;
     let currentProduct = this.data.productArray[this.data.selectedproduct];
@@ -28,8 +29,10 @@ Page({
       record_number: Number.parseInt(e.detail.value.productNumber),
       record_date: String(new Date().getTime()),
       product_id: currentProduct.id,
+      product_name: currentProduct.product_name,
       shop_id: currentProduct.shop_id,
-      user_id: this.data.user.id
+      user_id: this.data.user.id,
+      user_name: this.data.user.user_name
     };
     // 当前商品数量是否充足
     if (currentProduct.product_number < params.record_number) {

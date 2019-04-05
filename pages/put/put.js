@@ -101,8 +101,10 @@ Page({
       record_number: Number.parseInt(this.data.productNumber),
       record_date: String(new Date().getTime()),
       product_id: product.id,
+      product_name: product.product_name,
       shop_id: app.globalData.shop.id,
-      user_id: app.globalData.user.id
+      user_id: app.globalData.user.id,
+      user_name: app.globalData.user.user_name
     };
     api.save(recordObject, params).then(data => {
       // 提示操作成功.并清空页面数据
