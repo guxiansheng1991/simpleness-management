@@ -26,6 +26,18 @@
           <view class='operator-tool' bindtap='plus'> + </view>
         </view>
       </view>
+      <view class='form-item-title form-item'>购买用户电话</view>
+      <view class="form-item-body form-item">
+        <input placeholder="请输入购买用户电话" type="digit" />
+      </view>
+      <view class='form-item-title form-item'>本次积分</view>
+      <view class="form-item-body form-item">
+        <picker class='selector' name="productId" value="{{selectedproduct}}" range-key="product_name" range="{{productArray}}" bindchange='bindPickerChange'>
+          <view class='selected-text'>
+            {{productArray[selectedproduct].product_name}}
+          </view>
+        </picker>
+      </view>
       <view class="btn-area">
         <button form-type="submit" type='primary'>提交</button>
         <button form-type="reset">重置</button>

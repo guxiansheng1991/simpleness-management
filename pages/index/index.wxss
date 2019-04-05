@@ -25,6 +25,8 @@
 }
 .sale-order .form-item-body {
   background-color: #ffffff;
+  border-bottom: 1px solid #f4f4f4;
+  padding-bottom: 20rpx;
 }
 .selector {
   height: 80rpx;

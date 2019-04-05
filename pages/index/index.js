@@ -49,18 +49,7 @@ Page({
           let product = productObject.getWithoutData(currentProduct.id);
           product.incrementBy('product_number', -(params.record_number));
           api.update(product).then(data => {
-            // 新增记录
-            let recordObject = api.initTable('record');
-            api.save(recordObject, params).then(data => {
-              _this.formReset();
-              // 获取所有商品
-              _this.getAllProduct();
-              wx.showToast({
-                title: '操作成功',
-                icon: 'success',
-                duration: 2000
-              })
-            });
+            _this.addRecord(params);
           });
         }
       }
@@ -104,6 +93,21 @@ Page({
           selectedproduct: 0
         });
       }
+    });
+  },
+  // 新增操作记录
+  addRecord(params) {
+    // 新增记录
+    let recordObject = api.initTable('record');
+    api.save(recordObject, params).then(data => {
+      this.formReset();
+      // 获取所有商品
+      this.getAllProduct();
+      wx.showToast({
+        title: '操作成功',
+        icon: 'success',
+        duration: 2000
+      })
     });
   }
 })
