@@ -9,8 +9,8 @@
 
   <view class="module">
     <van-cell-group>
-      <van-cell title="入库单" is-link />
-      <van-cell title="销售单" is-link />
+      <van-cell title="入库单" is-link  url="/pages/putOrder/putOrder" />
+      <van-cell title="销售单" is-link  url="/pages/saleOrder/saleOrder" />
       <van-cell title="尺码" is-link url="/pages/size/size" />
       <van-cell title="退出登录" bindtap="logout" />
     </van-cell-group>
