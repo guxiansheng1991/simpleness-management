@@ -1,9 +1,9 @@
 <!--mine.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取头像</button>
     <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover" bindtap="login"></image>
     </block>
   </view>
 
@@ -11,8 +11,8 @@
     <van-cell-group>
       <van-cell title="入库单" is-link />
       <van-cell title="销售单" is-link />
-      <van-cell title="尺码列表" is-link url="/pages/dashboard/index" />
-      <van-cell title="设置" is-link url="/pages/dashboard/index" />
+      <van-cell title="尺码" is-link url="/pages/size/size" />
+      <van-cell title="退出登录" bindtap="logout" />
     </van-cell-group>
   </view>
 </view>

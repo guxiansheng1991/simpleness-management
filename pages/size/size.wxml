@@ -1,0 +1,21 @@
+<view class='container'>
+  <view class='size-wrapper'>
+    <van-cell-group>
+      <van-field value="{{sizeName}}" type="number" label="尺码名称" placeholder="请输入尺码名称" focus="true" bind:change="sizeNameChange" />
+    </van-cell-group>
+    <view class='btn'>
+      <van-button type="primary" bindtap='submit'>添加</van-button>
+    </view>
+    <view>
+      <van-button type="default" bindtap='reset'>重置</van-button>
+    </view>
+
+    <!-- 所有尺码 -->
+    <view>
+      <text>已经添加的所有尺寸:</text>
+    </view>
+    <view>
+      <text wx:for="{{sizeArray}}" wx:key="{{item.id}}">{{item.size_name}},</text>
+    </view>
+  </view>
+</view>

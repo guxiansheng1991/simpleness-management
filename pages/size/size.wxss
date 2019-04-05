@@ -1,0 +1,8 @@
+
+.size-wrapper {
+  margin-top: 10rpx;
+}
+.size-wrapper .btn {
+  margin-top: 50rpx;
+  margin-bottom: 10rpx;
+}

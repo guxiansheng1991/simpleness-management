@@ -1,16 +1,17 @@
 {
-  "pages":[
-    "pages/put/put",
+  "pages": [
+    "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/mine/mine",
+    "pages/put/put",
+    "pages/size/size",
     "pages/login/login"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "plugins": {
     "sdkPlugin": {
@@ -21,7 +22,10 @@
   "usingComponents": {
     "van-row": "./dist/row/index",
     "van-col": "./dist/col/index",
-    "van-button": "./dist/btn/index"
+    "van-button": "./dist/btn/index",
+    "van-field": "./dist/field/index",
+    "van-cell-group": "./dist/cell-group/index",
+    "van-icon": "./dist/icon/index"
   },
   "tabBar": {
     "color": "#000000",

@@ -46,6 +46,7 @@ Page({
   handleAdd () {
     if (this.data.productBarCode === '' || this.data.productName === '' || this.data.productNumber === '') {
       util.showToast('请将入库单填写完整');
+      return;
     }
     // 新增一个商品,或者更新一个商品的状态
     if (this.data.isAdd) {
@@ -61,7 +62,8 @@ Page({
       productNumber: 1,
       productSizeId: '',
       productSizeName: '',
-      productBarCode: ''
+      productBarCode: '',
+      productOriginalNumber: 0
     });
   },
   // 新增一个商品

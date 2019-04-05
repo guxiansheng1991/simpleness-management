@@ -1,4 +1,7 @@
 //mine.js
+const api = require('../../utils/api.js');
+const util = require('../../utils/util.js');
+const constant = require('../../utils/constant.js');
 //获取应用实例
 const app = getApp()
 
@@ -56,5 +59,25 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  // 退出登录
+  logout () {
+    wx.showModal({
+      title: '提示',
+      content: '确定退出登录吗?',
+      success(res) {
+        if (res.confirm) {
+          wx.clearStorage();
+          wx.navigateTo({
+            url: '../login/login',
+          });   
+        }
+      }
+    });
+  },
+  login () {
+    wx.navigateTo({
+      url: '../login/login',
+    });
   }
 })
