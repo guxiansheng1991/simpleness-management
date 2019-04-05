@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/putOrder/putOrder",
     "pages/index/index",
     "pages/logs/logs",
     "pages/put/put",
     "pages/size/size",
     "pages/mine/mine",
+    "pages/putOrder/putOrder",
     "pages/saleOrder/saleOrder",
     "pages/login/login"
   ],
@@ -13,7 +13,9 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
   },
   "plugins": {
     "sdkPlugin": {

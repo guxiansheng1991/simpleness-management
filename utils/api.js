@@ -67,6 +67,20 @@ const querySome = (tableObject, queryObject) => {
   });
 }
 
+// 分页查询
+const queryPage = (tableObject, queryObject, limit, offset) => {
+  util.showLoading();
+  return new Promise((resolve, reject) => {
+    tableObject.setQuery(queryObject).limit(limit).offset(offset).find().then((res) => {
+      resolve(res.data);
+      util.hideLoading();
+    }, err => {
+      reject(err);
+      util.hideLoading();
+    });
+  });
+}
+
 // 更新数据
 const update = (recordObject) => {
   util.showLoading();
@@ -99,5 +113,6 @@ module.exports = {
   save: save,
   queryAll: queryAll,
   querySome: querySome,
-  update: update
+  update: update,
+  queryPage: queryPage
 };

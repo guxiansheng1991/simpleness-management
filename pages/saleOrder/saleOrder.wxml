@@ -1,3 +1,18 @@
-<view>
-  <text>销售单</text>
+<view class='container'>
+  <!-- 销售单 -->
+  <view class='list-item' wx:for="{{orderList}}" wx:key="item.id">
+    <view class='list-item-row'>
+      <view>商品名:</view><view>{{item.product_name}}</view>
+    </view>
+    <view class='list-item-row'>
+      <text>数量:</text><text>{{item.record_number}}</text>
+    </view>
+    <view class='list-item-row'>
+      <text>日期:</text><text>{{item.record_number}}</text>
+    </view>
+    <view class='list-item-row'>
+      <text>操作者:</text><text>{{item.user_name}}</text>
+    </view>
+  </view>
+  <view class='loadall' wx:if="{{isLoadAll}}">数据已经加载完毕</view>
 </view>
