@@ -74,14 +74,5 @@ App({
         wx.setStorageSync('shop', this.globalData.shop);
       }
     });
-  },
-  // 获取用户信息
-  getUserInfo(userPhone) {
-    let userObject = api.initTable('user');
-    let queryObject = api.initQuery();
-    queryObject.compare('user_phone', '=', userPhone);
-    api.querySome(userObject, queryObject).then(data => {
-      console.log(data);
-    });
-  },
+  }
 })

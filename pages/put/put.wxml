@@ -1,3 +1,26 @@
 <view class="container">
-  <text>入库</text>
+  <van-button plain hairline type="primary" bindtap="handleScanCode">扫描条码</van-button>
+  <van-cell-group>
+    <view class='module'>商品条码</view>
+    <van-field value="{{productBarCode}}" label="商品条码" placeholder="请输入商品条码" bindchange="handleProducrtBarCodeChange" />
+    <view class='module'>商品名称</view>
+    <van-field value="{{productName}}" label="商品名称" placeholder="请输入商品名称"  bindchange="handleProducrtNameChange" />
+    <view class='module'>商品尺码</view>
+    <view class='shen-input'>
+      <picker bindchange="bindSizeChange" value="{{selectedIndex}}" range-key="size_name" range="{{sizeArray}}">
+        <view class="picker">
+          当前选择：{{sizeArray[selectedIndex].size_name}}
+        </view>
+      </picker>
+    </view>
+    <view class='module'>本次入库数量(原库存数: {{productOriginalNumber}})</view>
+    <input class='shen-input' value='{{productNumber}}' type='digit' placeholder="请输入商品数量" bindchange="handleProducrtNumberChange" />
+  </van-cell-group>
+
+  <view class='btn'>
+    <van-button type="primary" bindtap='submit' bindtap="handleAdd">确定</van-button>
+  </view>
+  <view>
+    <van-button type="default" bindtap='cancel' bindtap="handleReset">重置</van-button>
+  </view>
 </view>

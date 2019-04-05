@@ -17,6 +17,7 @@ const formatNumber = n => {
 // toast
 const showToast = (title) => {
   wx.showToast({
+    icon: 'none',
     title: title,
   });
 }
