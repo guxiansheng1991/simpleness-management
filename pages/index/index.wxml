@@ -28,13 +28,13 @@
       </view>
       <view class='form-item-title form-item'>购买用户电话</view>
       <view class="form-item-body form-item">
-        <input placeholder="请输入购买用户电话" type="digit" />
+        <input name="scoreUserPhone" placeholder="请输入购买用户电话" type="digit" bindchange='scoreUserPhoneChange' />
       </view>
       <view class='form-item-title form-item'>本次积分</view>
       <view class="form-item-body form-item">
-        <picker class='selector' name="productId" value="{{selectedproduct}}" range-key="product_name" range="{{productArray}}" bindchange='bindPickerChange'>
+        <picker class='selector' name="scoreUserNumber" value="{{selectedMeasureIndex}}" range-key="measure_number" range="{{measureArray}}" bindchange='bindMeasureChange'>
           <view class='selected-text'>
-            {{productArray[selectedproduct].product_name}}
+            {{measureArray[selectedMeasureIndex].measure_number}}
           </view>
         </picker>
       </view>

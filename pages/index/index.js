@@ -9,9 +9,15 @@ Page({
   data: {
     shopName: '大黄蜂童鞋',
     productArray: [],
-    selectedproduct: '', // 选中商品数组下标
-    recordNumber: 1, // 卖出数量
-    user: app.globalData.user
+    selectedproduct: '',        // 选中商品数组下标
+    recordNumber: 1,            // 卖出数量
+    user: app.globalData.user,
+    scoreUserPhone: '',         // 积分用户电话
+    scoreUserNumber: 0,         // 本次积分多少
+    measureArray: [],           // 所有积分带选项
+    selectedMeasureIndex: 0,    // 选中的积分项
+    usingScore: true,           // 为用户使用积分
+    usingScoreText: '不为用户使用积分'
   },
   onLoad: function() {
     wx.setNavigationBarTitle({
@@ -19,6 +25,7 @@ Page({
     });
     // 获取所有商品
     this.getAllProduct();
+    this.getAllMeasure();
   },
   // 提交
   formSubmit(e) {
@@ -39,8 +46,20 @@ Page({
       util.showToast('库存不足');
       return;
     }
+    // 积分
+    if (this.data.scoreUserPhone === '') {
+      this.setData({
+        usingScore: false,
+        usingScoreText: '不为用户使用积分'
+      });
+    } else {
+      this.setData({
+        usingScore: true,
+        usingScoreText: ''
+      });
+    }
     wx.showModal({
-      title: '提示',
+      title: `${_this.data.usingScoreText}`,
       content: `是否已经卖出了${currentProduct.product_name},${params.record_number}件`,
       success(res) {
         if (res.confirm) {
@@ -58,7 +77,8 @@ Page({
   formReset() {
     this.setData({
       recordNumber: 1,
-      selectedproduct: 0
+      selectedproduct: 0,
+      scoreUserPhone: ''
     });
   },
   // 尺码错误
@@ -73,7 +93,7 @@ Page({
       recordNumber: this.data.recordNumber + 1
     });
   },
-  // 点击增加按钮
+  // 点击减少按钮
   subtract() {
     if (this.data.recordNumber > 1) {
       this.setData({
@@ -100,14 +120,76 @@ Page({
     // 新增记录
     let recordObject = api.initTable('record');
     api.save(recordObject, params).then(data => {
-      this.formReset();
       // 获取所有商品
       this.getAllProduct();
-      wx.showToast({
-        title: '操作成功',
-        icon: 'success',
-        duration: 2000
-      })
+      if (this.data.usingScore) {
+        this.getUserScore();
+      } else {
+        this.formReset();
+      }
+    });
+  },
+  // 积分待选项改变
+  bindMeasureChange (e) {
+    this.setData({
+      selectedMeasureIndex: e.detail.value
+    });
+  },
+  // 积分用户电话号码
+  scoreUserPhoneChange (e) {
+    this.setData({
+      scoreUserPhone: e.detail.value
+    });
+  },
+  // 获取所有积分待选项
+  getAllMeasure () {
+    let measureObject = api.initTable('measure');
+    api.queryAll(measureObject).then(data => {
+      this.setData({
+        measureArray: data.objects
+      });
+    });
+  },
+  // 查询特定用户积分分数
+  getUserScore() {
+    let scoreObject = api.initTable('score');
+    let queryObject = api.initQuery();
+    queryObject.compare('score_phone', '=', this.data.scoreUserPhone);
+    api.querySome(scoreObject, queryObject).then(data => {
+      if (data.objects.length > 0) {
+        this.updateScore(data.objects[0]);
+      } else {
+        this.addScore();
+      }
+    });
+  },
+  // 保存积分
+  addScore () {
+    let currentMeasure = this.data.measureArray[this.data.selectedMeasureIndex];
+    let scoreObject = api.initTable('score');
+    let params = {
+      score_number: currentMeasure.measure_number,
+      score_phone: this.data.scoreUserPhone,
+      shop_id: app.globalData.shop.id
+    };
+    api.save(scoreObject, params).then(data => {
+      wx.showModal({
+        title: '提示',
+        content: `${data.score_phone}用户积分${data.score_number}分; 本次增加积分${params.score_number}`,
+      });
+    });
+  },
+  // 老用户更新积分
+  updateScore(data) {
+    let currentMeasure = this.data.measureArray[this.data.selectedMeasureIndex];
+    let scoreObject = api.initTable('score');
+    let score = scoreObject.getWithoutData(data.id);
+    score.incrementBy('score_number', currentMeasure.measure_number);
+    api.update(score).then(data => {
+      wx.showModal({
+        title: '提示',
+        content: `${data.score_phone}用户积分${data.score_number}分; 本次增加积分${currentMeasure.measure_number}`,
+      });
     });
   }
 })
