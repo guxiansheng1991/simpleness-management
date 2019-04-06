@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/query/query",
     "pages/index/index",
     "pages/logs/logs",
     "pages/put/put",
@@ -35,6 +36,12 @@
     "color": "#000000",
     "selectedColor": "#d81e06",
     "list": [
+      {
+        "pagePath": "pages/query/query",
+        "text": "查询",
+        "iconPath": "./images/query.png",
+        "selectedIconPath": "./images/query-active.png"
+      },
       {
         "pagePath": "pages/index/index",
         "text": "销售",

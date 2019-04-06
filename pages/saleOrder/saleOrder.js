@@ -50,7 +50,8 @@ Page({
     api.queryPage(recordObject, queryObject, this.data.limit, offset).then(data => {
       wx.stopPullDownRefresh();
       if (data.objects.length > 0) {
-        let arr = this.data.orderList.concat(data.objects);
+        let array = util.timeFormat(data.objects);
+        let arr = this.data.orderList.concat(array);
         this.setData({
           orderList: arr
         });

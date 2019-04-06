@@ -1,4 +1,9 @@
 <view class="container">
+  <!-- 非权限用户不能操作 -->
+  <view class='user-right' wx:if="{{user.user_level == 3}}">
+    <text>权限不足，入库操作仅店长权限可做</text>
+  </view>
+
   <van-button plain hairline type="primary" bindtap="handleScanCode">扫描条码</van-button>
   <van-cell-group>
     <view class='module'>商品条码</view>

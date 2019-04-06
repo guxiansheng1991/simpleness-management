@@ -13,6 +13,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function () {
+    api.checkLoginStatus();
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -39,18 +40,6 @@ Page({
         }
       })
     }
-    console.log(this.data.userInfo);
-    // let Users = new wx.BaaS.TableObject('user');
-    // let user = Users.create();
-    // user.set({
-    //   user_name: this.data.userInfo.nickName,
-    //   user_phone: '13027796721',
-    //   user_level: 1
-    // })
-    // .save()
-    // .then(() => {
-    //   console.log(123);
-    // });
   },
   getUserInfo: function (e) {
     console.log(e)

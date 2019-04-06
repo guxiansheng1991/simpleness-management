@@ -32,9 +32,19 @@ const hideLoading = (title) => {
   wx.hideLoading();
 }
 
+const timeFormat = (array) => {
+  for (let i = 0, len = array.length; i < len; i++) {
+    let item = array[i];
+    item.created_at = formatTime(new Date(item.created_at * 1000));
+    item.updated_at = formatTime(new Date(item.updated_at * 1000));
+  }
+  return array;
+}
+
 module.exports = {
   formatTime: formatTime,
   showToast: showToast,
   showLoading: showLoading,
-  hideLoading: hideLoading
+  hideLoading: hideLoading,
+  timeFormat: timeFormat
 }

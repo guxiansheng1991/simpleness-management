@@ -19,6 +19,7 @@ Page({
     usingScoreText: '不为用户使用积分'
   },
   onLoad: function() {
+    api.checkLoginStatus();
     wx.setNavigationBarTitle({
       title: this.data.shopName
     });
@@ -125,6 +126,10 @@ Page({
         this.getUserScore();
       } else {
         this.formReset();
+        wx.showModal({
+          title: '提示',
+          content: '操作成功',
+        });
       }
     });
   },

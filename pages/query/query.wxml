@@ -1,0 +1,56 @@
+<view>
+  <!-- tab -->
+  <view class='tab-list'>
+    <view class="{{currentTab == '0' ? 'tab active' : 'tab'}}" id="{{currentTab}}" bindtap='tabChange'>查库存</view>
+    <view class="{{currentTab == '1' ? 'tab active' : 'tab'}}" id="{{currentTab}}" bindtap='tabChange'>查积分</view>
+  </view>
+  <!-- 库存信息 -->
+  <view class='result repertory-wrapper' wx:if="{{currentTab == '0'}}">
+    <van-cell-group>
+      <van-field value="{{ barCode }}" placeholder="请输入商品条码" border="{{ false }}" />
+    </van-cell-group>
+    <view class='btns'>
+      <van-button size="large" type="primary" bindtap='scanCode'>扫码</van-button>
+      <van-button size="large" type="info" bindtap='getProductNumber'>查询</van-button>
+    </view>
+    <view class='result-list'>
+      <view class='list-item' wx:for="{{productArray}}" wx:key="item.id">
+        <view class='list-item-row'>
+          <view>商品名:</view>
+          <view>{{item.product_name}}</view>
+        </view>
+        <view class='list-item-row'>
+          <text>数量:</text>
+          <text>{{item.product_number}}</text>
+        </view>
+        <view class='list-item-row'>
+          <text>尺码:</text>
+          <text>{{item.size_name}}</text>
+        </view>
+        <view class='list-item-row'>
+          <text>条码:</text>
+          <text>{{item.product_bar_code}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 积分信息 -->
+  <view class='result score-wrapper' wx:if="{{currentTab == '1'}}">
+    <van-cell-group>
+      <van-field value="{{ userPhone }}" placeholder="请输入用户手机号码" border="{{ false }}" bind:change="onUserPhoneChange" />
+    </van-cell-group>
+    <van-button class='btns' size="large" type="primary" bindtap='getUserScoreNumber'>查询积分</van-button>
+    <view class='result-list'>
+      <view class='list-item' wx:for="{{userScoreArray}}" wx:key="item.id">
+        <view class='list-item-row'>
+          <view>用户电话:</view>
+          <view>{{item.score_phone}}</view>
+        </view>
+        <view class='list-item-row'>
+          <text>分数:</text>
+          <text>{{item.score_number}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

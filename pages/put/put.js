@@ -18,14 +18,21 @@ Page({
     originalProduct: {},        // 已经存在的商品
     sizeArray: [],              // 所有尺码
     selectedIndex: 0,           // 选中尺码数组下标
-    isAdd: true                 // 是否是新增商品,有可能只是更新一下库存
+    isAdd: true,                // 是否是新增商品,有可能只是更新一下库存
+    user: app.globalData.user
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    api.checkLoginStatus();
     this.getAllSize();
+  },
+  onShow () {
+    this.setData({
+      user: app.globalData.user
+    });
   },
   // 调起微信扫码
   handleScanCode() {
@@ -44,6 +51,11 @@ Page({
   },
   // 新增库存
   handleAdd () {
+    // 验证权限
+    if (app.globalData.user.level === 3) {
+      util.showToast('权限不足，入库操作仅店长权限可做');
+      return;
+    }
     if (this.data.productBarCode === '' || this.data.productName === '' || this.data.productNumber === '') {
       util.showToast('请将入库单填写完整');
       return;

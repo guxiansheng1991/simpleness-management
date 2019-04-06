@@ -8,7 +8,7 @@
       <text>数量:</text><text>{{item.record_number}}</text>
     </view>
     <view class='list-item-row'>
-      <text>日期:</text><text>{{item.record_number}}</text>
+      <text>日期:</text><text>{{item.created_at}}</text>
     </view>
     <view class='list-item-row'>
       <text>操作者:</text><text>{{item.user_name}}</text>

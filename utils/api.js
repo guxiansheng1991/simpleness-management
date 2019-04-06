@@ -3,17 +3,17 @@ const util = require('./util.js');
 // 初始化表格
 const initTable = (tableName, needCheckLoginStatusFlag) => {
   // 只有needCheckLoginStatusFlag明确传入true,才不会验证用户状态
-  if (!needCheckLoginStatusFlag) {
-    if (!checkLoginStatus()) {
-      wx.showModal({
-        title: '提示',
-        content: '请登录',
-      });
-      wx.navigateTo({
-        url: '../login/login',
-      });
-    }
-  }
+  // if (!needCheckLoginStatusFlag) {
+  //   if (!checkLoginStatus()) {
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '请登录',
+  //     });
+  //     wx.navigateTo({
+  //       url: '../login/login',
+  //     });
+  //   }
+  // }
   return new wx.BaaS.TableObject(tableName);
 }
 
@@ -71,7 +71,7 @@ const querySome = (tableObject, queryObject) => {
 const queryPage = (tableObject, queryObject, limit, offset) => {
   util.showLoading();
   return new Promise((resolve, reject) => {
-    tableObject.setQuery(queryObject).limit(limit).offset(offset).find().then((res) => {
+    tableObject.setQuery(queryObject).limit(limit).offset(offset).orderBy('-created_at').find().then((res) => {
       resolve(res.data);
       util.hideLoading();
     }, err => {
@@ -104,7 +104,12 @@ const checkLoginStatus = () => {
   } else {
     flag = false;
   }
-  return flag;
+  if (!flag) {
+    util.showToast('请登录');
+    wx.navigateTo({
+      url: '../login/login',
+    });
+  }
 }
 
 module.exports = {
@@ -114,5 +119,6 @@ module.exports = {
   queryAll: queryAll,
   querySome: querySome,
   update: update,
-  queryPage: queryPage
+  queryPage: queryPage,
+  checkLoginStatus: checkLoginStatus
 };
