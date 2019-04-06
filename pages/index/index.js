@@ -4,7 +4,6 @@ const util = require('../../utils/util.js');
 const constant = require('../../utils/constant.js');
 //获取应用实例
 const app = getApp();
-
 Page({
   data: {
     shopName: '大黄蜂童鞋',
